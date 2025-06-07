@@ -8,7 +8,13 @@ cmds = [
   "/opt/venv/bin/pip install -r requirements.txt"
 ]
 
+[phases.build]
+cmds = [
+  "python3 manage.py collectstatic --noinput"
+]
+
 [phases.start]
 cmds = [
+  "/opt/venv/bin/gunicorn --version",
   "/opt/venv/bin/gunicorn auth.wsgi:application --bind 0.0.0.0:$PORT"
 ]
