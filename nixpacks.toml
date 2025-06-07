@@ -8,7 +8,4 @@ cmds = [
   "/opt/venv/bin/pip install -r requirements.txt"
 ]
 
-[phases.start]
-cmds = [
-  "/opt/venv/bin/gunicorn auth.wsgi:application --bind 0.0.0.0:$PORT"
-]
+
