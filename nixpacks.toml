@@ -1,4 +1,4 @@
-﻿[phases.setup]
+[phases.setup]
 nixPkgs = ["python3", "gcc", "pkg-config", "mysql80", "openssl", "libffi", "zlib"]
 
 [phases.install]
@@ -10,11 +10,14 @@ cmds = [
 
 [phases.build]
 cmds = [
-  "python3 manage.py collectstatic --noinput"
+  "/opt/venv/bin/python manage.py collectstatic --noinput"
 ]
 
 [phases.start]
 cmds = [
-  "/opt/venv/bin/gunicorn --version",
-  "/opt/venv/bin/gunicorn auth.wsgi:application --bind 0.0.0.0:$PORT"
+  "/opt/venv/bin/gunicorn auth.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 3"
 ]
+
+# Set environment variables
+[variables]
+PORT = "8000"
