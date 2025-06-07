@@ -4,10 +4,11 @@ nixPkgs = ["python3", "gcc", "pkg-config", "mysql80", "openssl"]
 [phases.install]
 cmds = [
   "python3 -m venv /opt/venv",
-  ". /opt/venv/bin/activate && pip install -r requirements.txt"
+  "/opt/venv/bin/pip install --upgrade pip",
+  "/opt/venv/bin/pip install -r requirements.txt"
 ]
 
 [phases.start]
 cmds = [
-  ". /opt/venv/bin/activate && gunicorn auth.wsgi:application --bind 0.0.0.0:$PORT"
+  "/opt/venv/bin/gunicorn auth.wsgi:application --bind 0.0.0.0:$PORT"
 ]
