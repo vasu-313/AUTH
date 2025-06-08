@@ -121,12 +121,11 @@ print("DATABASE_URL:", os.getenv("DATABASE_URL"))
 
 
 DATABASES = {
-    'default': dj_database_url.config(
-        # Replace this value with your local database's connection string.
-        default='mysql://uailv6zn10r1i2rn:X4knj77fdSX6YIBdfGp8@bx0hiehdmnvxq7otfbg4-mysql.services.clever-cloud.com:3306/bx0hiehdmnvxq7otfbg4',
-        
-    )
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
+
+
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
