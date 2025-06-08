@@ -10,8 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
-import pymysql
-pymysql.install_as_MySQLdb()
+# import pymysql
+# pymysql.install_as_MySQLdb()
 
 from decouple import config
 import dj_database_url
@@ -117,7 +117,7 @@ DATABASES = {
     }
 }
 
-print("DATABASE_URL =", repr(os.environ.get('DATABASE_URL')))
+print("DATABASE_URL:", os.getenv("DATABASE_URL"))
 
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
