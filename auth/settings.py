@@ -117,7 +117,7 @@ DATABASES = {
 
 
 DATABASES = {
-    'default' : dj_database_url.config(default= 'mysql://root:123456@localhost:3306/auth')
+    'default': dj_database_url.config(default=config('DATABASE_URL'))
 }
 
 # Password validation
