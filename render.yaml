@@ -10,4 +10,4 @@ services:
       - key: DEBUG
         value: false
       - key: DATABASE_URL
-        value: mysql://uailv6zn10r1i2rn:X4knj77fdSX6YIBdfGp8@<bx0hiehdmnvxq7otfbg4-mysql.services.clever-cloud.com>:<3306>/bx0hiehdmnvxq7otfbg4
+        value: mysql://uailv6zn10r1i2rn:X4knj77fdSX6YIBdfGp8@bx0hiehdmnvxq7otfbg4-mysql.services.clever-cloud.com:3306/bx0hiehdmnvxq7otfbg4
