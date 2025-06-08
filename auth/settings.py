@@ -10,6 +10,9 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
+from decouple import config
+import dj_database_url
+
 from pathlib import Path
 import os
 
@@ -22,12 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # SECRET_KEY = 'django-insecure-jf^i@73(g^^*()ed-0oia%20h6*ux*xyy$jxhj!i32lk_k77rf'
-SECRET_KEY = os.environ.get('SECRET_KEY', 'fallback-development-key')
+SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = config('DEBUG', default=False, cast=bool)
 
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",")
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -64,7 +67,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # React dev server
 ]
 
-CORS_ALLOW_ALL_ORIGINS = False  # ⚠️ Only for development!
+CORS_ALLOW_ALL_ORIGINS = True  # ⚠️ Only for development!
 
 ROOT_URLCONF = 'auth.urls'
 
@@ -112,7 +115,6 @@ DATABASES = {
 }
 
 
-import dj_database_url
 
 DATABASES = {
     'default' : dj_database_url.config(default= 'mysql://root:123456@localhost:3306/auth')
@@ -152,8 +154,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type

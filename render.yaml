@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: django-app
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn auth.wsgi:application
+    envVars:
+      - key: SECRET_KEY
+        value: django-insecure-jf^i@73(g^^*()ed-0oia%20h6*ux*xyy$jxhj!i32lk_k77rf
+      - key: DEBUG
+        value: false
+      - key: DATABASE_URL
+        value: mysql://root:123456@localhost:3306/auth
