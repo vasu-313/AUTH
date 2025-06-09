@@ -1,13 +1,16 @@
 services:
   - type: web
-    name: django-app
+    name: auth
     env: python
-    buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn auth.wsgi:application
+    buildCommand: |
+      pip install -r requirements.txt
+      python manage.py collectstatic --no-input
+      python manage.py migrate
+    startCommand: gunicorn auth.wsgi:application --bind 0.0.0.0:8000
     envVars:
       - key: SECRET_KEY
         value: django-insecure-jf^i@73(g^^*()ed-0oia%20h6*ux*xyy$jxhj!i32lk_k77rf
       - key: DEBUG
-        value: false
+        value: False
       - key: DATABASE_URL
         value: mysql://uailv6zn10r1i2rn:X4knj77fdSX6YIBdfGp8@bx0hiehdmnvxq7otfbg4-mysql.services.clever-cloud.com:3306/bx0hiehdmnvxq7otfbg4
