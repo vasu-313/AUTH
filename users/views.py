@@ -6,9 +6,21 @@ from rest_framework.permissions import IsAuthenticated
 from .serializers import RegisterSerializer, ForgotPasswordSerializer, ResetPasswordSerializer
 from django.http import HttpResponse
 
+
 @api_view(['GET'])
 def home(request):
-    return HttpResponse("Welcome to the Auth App Home Page!")
+    return HttpResponse("""
+        <html>
+            <head>
+                <title>Admin Dashboard</title>
+            </head>
+            <body style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
+                <h1>Welcome to the Auth Backend</h1>
+                <p>This is a custom admin landing page.</p>
+                <p><a href="/admin/">Go to Django Admin</a></p>
+            </body>
+        </html>
+    """)
 
 
 @api_view(['POST'])

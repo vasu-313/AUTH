@@ -80,7 +80,7 @@ MIDDLEWARE = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "https://full-stack-auth-7bb35.web.app/", # React dev server
+    "https://full-stack-auth-7bb35.web.app", # React dev server
 ]
 
 CORS_ALLOW_ALL_ORIGINS = True  # ⚠️ Only for development!
